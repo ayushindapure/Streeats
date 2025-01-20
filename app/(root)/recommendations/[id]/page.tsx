@@ -12,6 +12,9 @@ export const experimental_ppr = true;
 
 const page = async ({ params }: { params: { id: string } }) => {
     const session = await auth();
+    // console.log(session);
+    // console.log(session.id); // Correct
+    // console.log(session._id); // Will be undefined
     // console.log("My session ID : ",session);;
 
     // console.log("This is session : ",session.user?.name);
@@ -35,7 +38,7 @@ const page = async ({ params }: { params: { id: string } }) => {
     <div className="flex justify-between items-center mb-6">
       <div className="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
         <div className="shrink-0">
-          <img className="size-12 rounded-full" src={post.author?.image || session.user?.image} alt="Avatar" />
+          <img className="size-12 rounded-full" src={post.author?.image} alt="Avatar" />
         </div>
 
         <div className="grow">
@@ -45,7 +48,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               <div className="hs-tooltip [--trigger:hover] [--placement:bottom] inline-block">
                 <div className="hs-tooltip-toggle sm:mb-1 block text-start cursor-pointer">
                   <span className="font-semibold text-gray-800">
-                    {post.author?.name || session.user?.name}
+                    {post.author?.name}
                   </span>
 
 
@@ -101,7 +104,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 
               <ul className="text-xs text-gray-500">
                 <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full">
-                  {post.author?.username || session.user?.email}
+                  {post.author?.username}
                 </li>
                 <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full">
                   5 min read
@@ -154,7 +157,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 
       <p className="text-lg text-gray-800"> {post.pitch}</p>
 
-      <div>
+      {/* <div>
         <a className="m-1 inline-flex items-center gap-1.5 py-2 px-3 rounded-full text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200" href="#">
           Plan
         </a>
@@ -167,16 +170,16 @@ const page = async ({ params }: { params: { id: string } }) => {
         <a className="m-1 inline-flex items-center gap-1.5 py-2 px-3 rounded-full text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200" href="#">
           Team
         </a>
-      </div>
+      </div> */}
     </div>
 
   </div>
 </div>
 
 
-        <Suspense fallback={<Skeleton />}>
+        {/* <Suspense fallback={<Skeleton />}>
             <View id={id} />
-        </Suspense>
+        </Suspense> */}
         {/* <View/> */}
         
 

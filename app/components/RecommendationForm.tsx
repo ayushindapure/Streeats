@@ -9,6 +9,8 @@ import React, { useActionState, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { createPitch } from "@/lib/actions";
+import Confetti from "@/components/ui/confetti";
+import { ConfettiFireworks } from "./ConfettiFireworks";
 
 const RecommendationForm = () => {
 //   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -95,6 +97,7 @@ const RecommendationForm = () => {
                         id="shop_name"
                         name="shop_name"
                         className="py-3 px-4 border-2 border-neutral-400 block w-full rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500 disabled:opacity-50 disabled:pointer-events-none"
+                        placeholder="Cafe Paradise"
                         required
                       />
                       {/* {errors.shop_name && (
@@ -114,11 +117,28 @@ const RecommendationForm = () => {
                         type="text"
                         name="address"
                         className="py-3 px-4 border-2 border-neutral-400 block w-full rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500 disabled:opacity-50 disabled:pointer-events-none"
+                        placeholder="Karve road, Pune"
                       />
                     </div>
                   </div>
-
+                  
                   <div>
+                      <label
+                        htmlFor="price"
+                        className="block mb-2 text-sm text-gray-700 font-medium"
+                      >
+                        Avg Price
+                      </label>
+                      <Input
+                        id="price"
+                        type="text"
+                        name="price"
+                        placeholder="80"
+                        className="py-3 px-4 border-2 border-neutral-400 block w-full rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500 disabled:opacity-50 disabled:pointer-events-none"
+                      />
+                  </div>
+                  
+                  <div> 
                     <label
                       htmlFor="description"
                       className="block mb-2 text-sm text-gray-700 font-medium"
@@ -145,6 +165,7 @@ const RecommendationForm = () => {
                         id="category"
                         type="text"
                         name="category"
+                        placeholder="Street stall, Food truck"
                         className="py-3 px-4 border-2 border-neutral-400 block w-full rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500 disabled:opacity-50 disabled:pointer-events-none"
                       />
                     </div>
@@ -179,19 +200,13 @@ const RecommendationForm = () => {
                       name="pitch"
                       rows={4}
                       className="py-3 px-4 border-2 border-neutral-400 block w-full rounded-lg text-sm focus:border-orange-500 focus:ring-orange-500 disabled:opacity-50 disabled:pointer-events-none"
-                      placeholder="Briefly describe why you like the food at above stall and whats so special in it"
+                      placeholder="Briefly describe why you like the food at above spot and whats so special about it"
                     />
                   </div>
                 </div>
 
-                <div className="mt-6 grid">
-                  <button
-                    type="submit"
-                    disabled={isPending}
-                    className="w-full py-3 px-4 border-neutral-400 inline-flex justify-center items-center gap-x-2 text-sm font-sm rounded-lg border border-transparent bg-orange-600 text-white hover:bg-orange-700 focus:outline-none focus:bg-orange-700 disabled:opacity-50 disabled:pointer-events-none"
-                  >
-                    {isPending ? "Submitting..." : "Submit"}
-                  </button>
+                <div className="flex justify-center items-center pt-5">
+                  <ConfettiFireworks/>
                 </div>
 
                 <div className="mt-3 text-center">

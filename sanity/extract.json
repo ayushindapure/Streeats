@@ -763,6 +763,13 @@
         },
         "optional": true
       },
+      "price": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
+        },
+        "optional": true
+      },
       "category": {
         "type": "objectAttribute",
         "value": {

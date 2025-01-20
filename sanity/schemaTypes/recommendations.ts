@@ -34,6 +34,10 @@ export const recommendations = defineType({
       type: "text",
     }),
     defineField({
+      name: "price",
+      type: "number",
+    }),
+    defineField({
       name: "category",
       type: "string",
       validation: (Rule) =>

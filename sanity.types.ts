@@ -171,11 +171,12 @@ export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: RECOMMENDATION_QUERY
-// Query: *[_type == "recommendations" &&   (!defined($search) || $search == "" || category match $search || shop_name match $search || author->name match $search)] | order(_createdAt desc) {    description,    category,    _id,    image,    address,    author -> {      _id,      name,      image,      bio,      username    },    views,    shop_name,    pitch}
+// Query: *[_type == "recommendations" &&   (!defined($search) || $search == "" || category match $search || shop_name match $search || author->name match $search)] | order(_createdAt desc) {    description,    category,    _id,    price,    image,    address,    author -> {      _id,      name,      image,      bio,      username    },    views,    shop_name,    pitch}
 export type RECOMMENDATION_QUERYResult = Array<{
   description: string | null;
   category: string | null;
   _id: string;
+  price: null;
   image: string | null;
   address: string | null;
   author: {
@@ -190,10 +191,11 @@ export type RECOMMENDATION_QUERYResult = Array<{
   pitch: string | null;
 }>;
 // Variable: RECOMMENDATION_BY_ID_QUERY
-// Query: *[_type == "recommendations" && _id == $id][0]{    description,    _id,    category,    image,    address,    author -> {      _id, name, username, image, bio    },    views,    shop_name,    pitch  }
+// Query: *[_type == "recommendations" && _id == $id][0]{    description,    _id,    price,    category,    image,    address,    author -> {      _id, name, username, image, bio    },    views,    shop_name,    pitch  }
 export type RECOMMENDATION_BY_ID_QUERYResult = {
   description: string | null;
   _id: string;
+  price: null;
   category: string | null;
   image: string | null;
   address: string | null;
@@ -215,8 +217,19 @@ export type FOODCARD_VIEWS_QUERYResult = {
   views: number | null;
 } | null;
 // Variable: AUTHOR_BY_GITHUB_ID_QUERY
-// Query: *[_type == "author" && _id == $id][0]{      _id,      id,      name,      username,      email,      image,      bio,  }
+// Query: *[_type == "author" && id == $id][0]{      _id,      id,      name,      username,      email,      image,      bio,  }
 export type AUTHOR_BY_GITHUB_ID_QUERYResult = {
+  _id: string;
+  id: number | null;
+  name: string | null;
+  username: string | null;
+  email: string | null;
+  image: string | null;
+  bio: string | null;
+} | null;
+// Variable: AUTHOR_BY_ID_QUERY
+// Query: *[_type == "author" && _id == $id][0]{      _id,      id,      name,      username,      email,      image,      bio,  }
+export type AUTHOR_BY_ID_QUERYResult = {
   _id: string;
   id: number | null;
   name: string | null;
@@ -230,9 +243,10 @@ export type AUTHOR_BY_GITHUB_ID_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"recommendations\" && \n  (!defined($search) || $search == \"\" || category match $search || shop_name match $search || author->name match $search)\n] | order(_createdAt desc) {\n    description,\n    category,\n    _id,\n    image,\n    address,\n    author -> {\n      _id,\n      name,\n      image,\n      bio,\n      username\n    },\n    views,\n    shop_name,\n    pitch\n}": RECOMMENDATION_QUERYResult;
-    "\n  *[_type == \"recommendations\" && _id == $id][0]{\n    description,\n    _id,\n    category,\n    image,\n    address,\n    author -> {\n      _id, name, username, image, bio\n    },\n    views,\n    shop_name,\n    pitch\n  }\n": RECOMMENDATION_BY_ID_QUERYResult;
+    "*[_type == \"recommendations\" && \n  (!defined($search) || $search == \"\" || category match $search || shop_name match $search || author->name match $search)\n] | order(_createdAt desc) {\n    description,\n    category,\n    _id,\n    price,\n    image,\n    address,\n    author -> {\n      _id,\n      name,\n      image,\n      bio,\n      username\n    },\n    views,\n    shop_name,\n    pitch\n}": RECOMMENDATION_QUERYResult;
+    "\n  *[_type == \"recommendations\" && _id == $id][0]{\n    description,\n    _id,\n    price,\n    category,\n    image,\n    address,\n    author -> {\n      _id, name, username, image, bio\n    },\n    views,\n    shop_name,\n    pitch\n  }\n": RECOMMENDATION_BY_ID_QUERYResult;
     "*[_type == \"recommendations\" && _id == $id][0]{\n      _id,\n      views\n  }\n": FOODCARD_VIEWS_QUERYResult;
-    "*[_type == \"author\" && _id == $id][0]{\n      _id,\n      id,\n      name,\n      username,\n      email,\n      image,\n      bio,\n  }\n": AUTHOR_BY_GITHUB_ID_QUERYResult;
+    "*[_type == \"author\" && id == $id][0]{\n      _id,\n      id,\n      name,\n      username,\n      email,\n      image,\n      bio,\n  }": AUTHOR_BY_GITHUB_ID_QUERYResult;
+    "*[_type == \"author\" && _id == $id][0]{\n      _id,\n      id,\n      name,\n      username,\n      email,\n      image,\n      bio,\n  }": AUTHOR_BY_ID_QUERYResult;
   }
 }

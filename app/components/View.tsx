@@ -12,7 +12,7 @@ const View = async ({ id }: { id: string }) => {
     .withConfig({ useCdn: false })
     .fetch(FOODCARD_VIEWS_QUERY, { id });
 
-    after( async() => await writeClient
+    after( async () => await writeClient
         .patch(id)
         .set({ views: totalViews+1 })
         .commit()

@@ -7,16 +7,22 @@ import { RECOMMENDATION_QUERY } from "@/sanity/lib/queries";
 import sanityCli from "@/sanity.cli";
 import { SanityLive, sanityFetch } from "@/sanity/lib/live";
 import { auth } from "@/auth";
+import AnimatedTextUnderlign from "../components/AnimatedTextUnderlign";
 
 export default async function Home({ searchParams }: {
   searchParams: Promise<{ query?: string }>
 }) {
+
+  
+
   const query = (await searchParams).query;
   const params = { search: query || null };
 
   const session = await auth();
-  // console.log(session)
-  console.log("My session ID : ",session?.id);
+  if(session){
+    // console.log(session);
+    // console.log("Session id:",session.id); // Correct
+  }
   
   // const posts = await client.fetch(RECOMMENDATION_QUERY);
   const { data : posts } = await sanityFetch({query: RECOMMENDATION_QUERY, params}) 
@@ -25,14 +31,15 @@ export default async function Home({ searchParams }: {
     <div>
       <section>
 <div className="relative overflow-hidden">
-  <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-10">
+  <div className="max-w-[85rem]  mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-10">
     <div className="text-center">
-        <p className="text-xs font-semibold text-neutral-950 tracking-wide uppercase mb-3">
+        <p className="text-xs font-semibold text-neutral-950  uppercase mb-3">
           Vocal For Local
         </p>
-        <h1 className="text-3xl md:px-20 sm:px-2 text-gray-800 font-bold  sm:text-5xl lg:text-6xl lg:leading-tight">
+      <AnimatedTextUnderlign/>
+        {/* <h1 className="text-3xl md:px-20 sm:px-2 text-gray-800 font-bold  sm:text-5xl lg:text-6xl lg:leading-tight">
           Craving the Tastiest Street Food near you? <span className="text-orange-500">We’ve Got It!</span>
-        </h1>
+        </h1> */}
       
 
       <div className="mt-7 sm:mt-12 mx-auto max-w-xl relative">
@@ -54,15 +61,16 @@ export default async function Home({ searchParams }: {
       </div>
 
       <div className="mt-10 sm:mt-20">
+        
         <a className="m-1 py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" href="#">
           <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
             Stalls
         </a>
+        
         <a className="m-1 py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
 </svg>
-
             Foodtrucks
         </a>
         <a className="m-1 py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" href="#">

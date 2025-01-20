@@ -89,21 +89,22 @@ export const createPitch = async (
   // console.log("Session details:", session); 
 
   const formEntries = Object.fromEntries(form);
-  const { shop_name, description, category, address, link, pitch, name, username } = formEntries;
+  const { shop_name, description, category, address, link, pitch, name, username, price } = formEntries;
 
   const slug = slugify(shop_name as string, { lower: true, strict: true });
 
   try {
     const author = {
       _type: "reference",
-      _ref: session?._id, // Replace with the correct user ID property name (e.g., session?.id, session?._id)
-    };
+      _ref: session?.id || session?._id, // Check if _id works too
+    };    
 
     const recommendations = {
       shop_name,
       description,
       category,
       address,
+      price,
       image: link,
       slug: {
         _type: "slug",
