@@ -1,9 +1,6 @@
+import React from 'react';
 import { AvatarCirclesDemo } from '@/app/components/AvatarCirclesDemo';
 import RecommendationForm from '@/app/components/RecommendationForm';
-import RecommendationFormTesting from '@/app/components/RecommendationFormTesting';
-import { auth } from '@/auth'
-import { redirect } from 'next/navigation';
-import React from 'react'
 
 const page = async () => {
     

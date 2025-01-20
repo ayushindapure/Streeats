@@ -1,17 +1,17 @@
 // /recommendations/[id]/page.tsx
+// import { auth } from '@/auth';
 import Skeleton from '@/app/components/Skeleton';
 import View from '@/app/components/View';
-import { auth } from '@/auth';
 import { client } from '@/sanity/lib/client';
 import { RECOMMENDATION_BY_ID_QUERY } from '@/sanity/lib/queries';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import React, { Suspense } from 'react';
+import React from 'react';
+import { Suspense } from 'react';
 
 export const experimental_ppr = true;
 
 const page = async ({ params }: { params: { id: string } }) => {
-    const session = await auth();
+    // const session = await auth();
     // console.log(session);
     // console.log(session.id); // Correct
     // console.log(session._id); // Will be undefined
@@ -38,7 +38,12 @@ const page = async ({ params }: { params: { id: string } }) => {
     <div className="flex justify-between items-center mb-6">
       <div className="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
         <div className="shrink-0">
-          <img className="size-12 rounded-full" src={post.author?.image} alt="Avatar" />
+        <img 
+  className="size-12 rounded-full" 
+  src={post.author?.image || ''}  // fallback to empty string if null or undefined
+  alt="Avatar" 
+/>
+
         </div>
 
         <div className="grow">
@@ -139,7 +144,7 @@ const page = async ({ params }: { params: { id: string } }) => {
       
       </div>
       <figure>
-        <img width={80} height={80} className="w-full object-cover rounded-xl" src={post.image} alt="Blog Image" />
+        <img width={80} height={80} className="w-full object-cover rounded-xl" src={post.image || ""} alt="Blog Image" />
         {/* <figcaption className="mt-3 text-sm text-center text-gray-500">
           A woman sitting at a table.
         </figcaption> */}
@@ -177,10 +182,9 @@ const page = async ({ params }: { params: { id: string } }) => {
 </div>
 
 
-        {/* <Suspense fallback={<Skeleton />}>
+        <Suspense fallback={<Skeleton />}>
             <View id={id} />
-        </Suspense> */}
-        {/* <View/> */}
+        </Suspense>
         
 
         </div>

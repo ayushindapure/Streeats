@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { formSchema } from "@/lib/validation";
 import { Send } from "lucide-react";
-// import { z } from "zod";
 import React, { useActionState, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
@@ -32,7 +31,7 @@ const RecommendationForm = () => {
       await formSchema.parseAsync(formValues);
 
     //   console.log("Form Values:", formValues);
-      const result = await createPitch(prevState, formData, pitch);
+      const result = await createPitch(prevState, formData);
 
       if (result.status == "SUCCESS") {
         toast({

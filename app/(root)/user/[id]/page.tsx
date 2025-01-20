@@ -2,7 +2,7 @@ import UserRecommendations from '@/app/components/UserRecommendations';
 import { auth } from '@/auth';
 import { client } from '@/sanity/lib/client';
 import { AUTHOR_BY_ID_QUERY } from '@/sanity/lib/queries';
-import { Code, FileUser, Mail, User, UserPen } from 'lucide-react';
+import { Code, Mail, User} from 'lucide-react';
 import { notFound } from 'next/navigation';
 import React, { Suspense } from 'react'
 // import { experimental_ppr } from '../../recommendations/[id]/page';
@@ -74,7 +74,7 @@ const page = async ({params}: {params: Promise<{ id:string }>}) => {
       <div className="h-24 w-full bg-neutral-900" />
       <div className="top-16 z-10 flex items-center flex-col gap-4 px-5 py-5">
         <div className="-mt-20">
-          <img src={user.image} height={200} width={200} className='rounded-full' alt="profile image" />
+          <img src={user.image || ""} height={200} width={200} className='rounded-full' alt="profile image" />
         </div>
         <div className="flex items-center flex-col">
           <p title="name/نام" className="text-black text-3xl pb-5 font-bold">{user.name}</p>
