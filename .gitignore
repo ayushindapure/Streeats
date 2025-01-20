@@ -3,7 +3,6 @@
 # dependencies
 /node_modules
 .next/
-.env
 .DS_Store
 /.pnp
 .pnp.*
