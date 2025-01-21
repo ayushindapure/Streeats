@@ -143,8 +143,8 @@ export type Recommendations = {
   address?: string;
   description?: string;
   category?: string;
-  image?: string;
   price?: number;
+  image?: string;
   pitch?: string;
 };
 
@@ -196,7 +196,6 @@ export type RECOMMENDATION_QUERYResult = Array<{
 export type RECOMMENDATION_BY_ID_QUERYResult = {
   description: string | null;
   _id: string;
-  price: number | null;  
   category: string | null;
   image: string | null;
   address: string | null;
@@ -209,6 +208,7 @@ export type RECOMMENDATION_BY_ID_QUERYResult = {
   } | null;
   views: number | null;
   shop_name: string | null;
+  price: number | null;
   pitch: string | null;
 } | null;
 // Variable: FOODCARD_VIEWS_QUERY
