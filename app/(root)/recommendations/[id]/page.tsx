@@ -10,20 +10,14 @@ import { Suspense } from 'react';
 
 export const experimental_ppr = true;
 
-interface PageProps {
-  params: {
-      id: string;
-  };
-}
+const page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const id = (await params).id;
+  const [post] = await Promise.all([
+    client.fetch(RECOMMENDATION_BY_ID_QUERY, { id }),
+  ]);
 
-const page = async ({ params }: PageProps) => {
-  const id = params.id;
+  if (!post) return notFound();
 
-  const post = await client.fetch(RECOMMENDATION_BY_ID_QUERY, { id });
-
-  if (!post) {
-      return notFound(); // Handle the case where no post is found
-  }
     return (
         <div>
             {/* <h1 className="text-3xl">This is a food card name: {post.shop_name}</h1> */}
@@ -141,11 +135,7 @@ const page = async ({ params }: PageProps) => {
       </div>
       <figure>
         <img width={80} height={80} className="w-full object-cover rounded-xl" src={post.image || ""} alt="Blog Image" />
-        {/* <figcaption className="mt-3 text-sm text-center text-gray-500">
-          A woman sitting at a table.
-        </figcaption> */}
       </figure>
-      {/* <p className="text-lg text-gray-800">We're proud to be a part of creating a more open culture and to continue building a product that supports this vision.</p> */}
 
       
 

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import SearchForm from "../components/SearchForm";
 import FoodCard, { FoodCardType } from "../components/FoodCard";
+
 // import { FoodCardType } from "../components/FoodCard";
 
 import { RECOMMENDATION_QUERY } from "@/sanity/lib/queries";
