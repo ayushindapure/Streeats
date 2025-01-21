@@ -7,22 +7,23 @@ import { after } from 'next/server';
 // import { writeClient } from "@/sanity/lib/write-client";
 // import { unstable_after as after } from "next/server";
 
+interface FoodCardViewsResult {
+  views: number;
+}
+
+
 const View = async ({ id }: { id: string }) => {
   const { views: totalViews } = await client
     .withConfig({ useCdn: false })
-    .fetch(FOODCARD_VIEWS_QUERY, { id });
+    .fetch<FoodCardViewsResult>(FOODCARD_VIEWS_QUERY, { id });
 
-    after( async () => await writeClient
+  after(
+    async () =>
+      await writeClient
         .patch(id)
-        .set({ views: totalViews+1 })
-        .commit()
-        // console.log(session.id());
-        // Fetched user cuurent Location
-        // Geolocation.getCurrentPosition(): 
-        
-        // Updates the location of user in realtime
-        // Geolocation.watchPosition():
-    );
+        .set({ views: totalViews + 1 })
+        .commit(),
+  );
 
 
   return (

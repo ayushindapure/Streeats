@@ -144,6 +144,7 @@ export type Recommendations = {
   description?: string;
   category?: string;
   image?: string;
+  price?: number;
   pitch?: string;
 };
 
@@ -176,7 +177,7 @@ export type RECOMMENDATION_QUERYResult = Array<{
   description: string | null;
   category: string | null;
   _id: string;
-  price: null;
+  price: number | null;
   image: string | null;
   address: string | null;
   author: {
@@ -195,7 +196,7 @@ export type RECOMMENDATION_QUERYResult = Array<{
 export type RECOMMENDATION_BY_ID_QUERYResult = {
   description: string | null;
   _id: string;
-  price: null;
+  price: number | null;  
   category: string | null;
   image: string | null;
   address: string | null;

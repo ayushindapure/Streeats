@@ -1,7 +1,6 @@
 import Image from "next/image";
 import SearchForm from "../components/SearchForm";
 import FoodCard, { FoodCardType } from "../components/FoodCard";
-
 // import { FoodCardType } from "../components/FoodCard";
 
 import { RECOMMENDATION_QUERY } from "@/sanity/lib/queries";
@@ -14,7 +13,6 @@ export default async function Home({ searchParams }: {
   searchParams: Promise<{ query?: string }>
 }) {
 
-  
 
   const query = (await searchParams).query;
   const params = { search: query || null };
@@ -106,14 +104,17 @@ export default async function Home({ searchParams }: {
           </h2>
 
           <ul className="flex flex-wrap gap-y-4">
-          {posts?.length > 0 ? (
-            posts.map((post: FoodCardType) => (
-              <FoodCard key={post?._id} post={post} />
-            ))
-          ) : (
-            <p className="no-results">Oops! No results found</p>
-          )}
-        </ul>
+  {Array.isArray(posts) && posts.length > 0 ? (
+    posts.map((post) => (
+      <FoodCard key={post._id} post={post as unknown as FoodCardType} />
+    ))
+  ) : (
+    <li className="no-results">
+      <p>Oops! No results found</p>
+    </li>
+  )}
+</ul>
+
 
 
       </section>
