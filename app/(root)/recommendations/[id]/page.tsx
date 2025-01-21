@@ -10,24 +10,20 @@ import { Suspense } from 'react';
 
 export const experimental_ppr = true;
 
-const page = async ({ params }: { params: { id: string } }) => {
-    // const session = await auth();
-    // console.log(session);
-    // console.log(session.id); // Correct
-    // console.log(session._id); // Will be undefined
-    // console.log("My session ID : ",session);;
+interface PageProps {
+  params: {
+      id: string;
+  };
+}
 
-    // console.log("This is session : ",session.user?.name);
-    const id = params.id; // No need to await here
+const page = async ({ params }: PageProps) => {
+  const id = params.id;
 
-    const post = await client.fetch(RECOMMENDATION_BY_ID_QUERY, { id });
+  const post = await client.fetch(RECOMMENDATION_BY_ID_QUERY, { id });
 
-    if (!post) {
-        return notFound();
-    }
-
-    // console.log("post : ",post);
-
+  if (!post) {
+      return notFound(); // Handle the case where no post is found
+  }
     return (
         <div>
             {/* <h1 className="text-3xl">This is a food card name: {post.shop_name}</h1> */}
@@ -162,20 +158,21 @@ const page = async ({ params }: { params: { id: string } }) => {
 
       <p className="text-lg text-gray-800"> {post.pitch}</p>
 
-      {/* <div>
+      <div>
         <a className="m-1 inline-flex items-center gap-1.5 py-2 px-3 rounded-full text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200" href="#">
-          Plan
+          #StreetFood
         </a>
         <a className="m-1 inline-flex items-center gap-1.5 py-2 px-3 rounded-full text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200" href="#">
-          Web development
+          #Cafe
         </a>
         <a className="m-1 inline-flex items-center gap-1.5 py-2 px-3 rounded-full text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200" href="#">
-          Free
+          #Wadapav
         </a>
         <a className="m-1 inline-flex items-center gap-1.5 py-2 px-3 rounded-full text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200" href="#">
-          Team
+          #Tasty
         </a>
-      </div> */}
+      </div>
+
     </div>
 
   </div>
