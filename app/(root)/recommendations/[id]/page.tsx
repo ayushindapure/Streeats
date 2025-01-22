@@ -6,6 +6,7 @@ import { client } from '@/sanity/lib/client';
 import { RECOMMENDATION_BY_ID_QUERY } from '@/sanity/lib/queries';
 import { notFound } from 'next/navigation';
 import React from 'react';
+import Link from 'next/link';
 import { Suspense } from 'react';
 
 export const experimental_ppr = true;
@@ -28,11 +29,14 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     <div className="flex justify-between items-center mb-6">
       <div className="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
         <div className="shrink-0">
+
+        <Link href={`/user/${post.author?._id}`}>
         <img 
   className="size-12 rounded-full" 
   src={post.author?.image || ''}  // fallback to empty string if null or undefined
   alt="Avatar" 
 />
+</Link>
 
         </div>
 
@@ -42,9 +46,11 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
               <div className="hs-tooltip [--trigger:hover] [--placement:bottom] inline-block">
                 <div className="hs-tooltip-toggle sm:mb-1 block text-start cursor-pointer">
+                <Link href={`/user/${post.author?._id}`}>
                   <span className="font-semibold text-gray-800">
                     {post.author?.name}
                   </span>
+                </Link>
 
 
                   <div className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 max-w-xs cursor-default bg-gray-900 divide-y divide-gray-700 shadow-lg rounded-xl" role="tooltip">
