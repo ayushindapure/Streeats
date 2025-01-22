@@ -19,6 +19,7 @@
     "next": "$next"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@popperjs/core": "^2.11.8",
     "@preline/remove-element": "^2.6.0",
     "@preline/tooltip": "^2.5.2",
@@ -43,6 +44,7 @@
     "next-transpile-modules": "^10.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.4.0",
     "sanity": "^3.69.0",
     "server-only": "^0.0.1",
     "slugify": "^1.6.6",

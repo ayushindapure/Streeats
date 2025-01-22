@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-const withTM = require('next-transpile-modules')(['lucide-react']);
+const withTM = require('next-transpile-modules')(['lucide-react', 'sanity']);
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
