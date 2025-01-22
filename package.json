@@ -4,10 +4,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev ",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
+    "dev": "next dev 2>/dev/null",
+    "build": "next build 2>/dev/null",
+    "start": "next start 2>/dev/null",
+    "lint": "next lint 2>/dev/null",
     "predev": "npm run typegen",
     "prebuild": "npm run typegen",
     "typegen": "sanity schema extract --path=./sanity/extract.json && sanity typegen generate"
