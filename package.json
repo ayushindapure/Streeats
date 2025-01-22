@@ -40,6 +40,7 @@
     "next": "^15.2.0-canary.8",
     "next-auth": "^5.0.0-beta.25",
     "next-sanity": "^9.8.35",
+    "next-transpile-modules": "^10.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sanity": "^3.69.0",

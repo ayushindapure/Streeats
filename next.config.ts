@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+const withTM = require('next-transpile-modules')(['lucide-react']);
 
 const nextConfig: NextConfig = {
   typescript: {
@@ -10,7 +11,7 @@ const nextConfig: NextConfig = {
   experimental: {
     ppr: "incremental",
   },
-  
+  reactStrictMode: true,
   devIndicators: {
     appIsrStatus: true,
     buildActivity: true,
@@ -21,4 +22,4 @@ const nextConfig: NextConfig = {
 
 
 
-export default nextConfig;
+module.exports = withTM(nextConfig);
